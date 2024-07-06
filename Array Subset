@@ -1,0 +1,43 @@
+Given two arrays: a1[0..n-1] of size n and a2[0..m-1] of size m, where both arrays may contain duplicate elements. The task is to determine whether array a2 is a subset of array a1. It's important to note that both arrays can be sorted or unsorted. Additionally, each occurrence of a duplicate element within an array is considered as a separate element of the set.
+
+Sol
+
+--C++--
+string check(int *a1,int *a2,int n,int m){
+    
+    unordered_map<int,int>count;
+    
+    for(int i=0;i<n;i++){
+        count[a1[i]]++;
+    }
+    for(int i=0;i<m;i++){
+        if(count[a2[i]]==0){
+            return "No";
+        }
+        count[a2[i]]--;
+    }
+    return "Yes";
+    
+}
+
+string isSubset(int a1[], int a2[], int n, int m) {
+    string a =check(a1,a2,n,m);
+    return a
+
+
+--Python--
+
+def isSubset( a1, a2, n, m):
+    d2={}
+    for i in a2:
+        d2[i]=d2.get(i,0)+1
+    for i in range(n):
+        if a1[i] in d2:
+            d2[a1[i]]-=1
+            if d2[a1[i]]==0:
+                del d2[a1[i]]
+    if d2=={}:
+        return 'Yes'
+    else:
+        return 'No'
+ 
